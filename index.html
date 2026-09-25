@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error 500</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            background: white;
+            overflow: hidden;
+        }
+
+        #start {
+            position: fixed;
+            inset: 0;
+            background: white;
+            color: black;
+
+            font-family: "Times New Roman", Times, serif;
+            font-size: 16px;
+
+            padding: 8px;
+            cursor: default;
+            z-index: 10;
+        }
+
+        #start .link {
+            color: #0000ee;
+        }
+
+        #boo {
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="start">
+        Error 500 Internal Server Error - If the website still doesn't show any response,
+        please <span class="link">click here</span> to reconnect.
+    </div>
+
+    <img id="boo" src="boo.png" alt="">
+
+    <audio id="sound" src="boo.mp3"></audio>
+
+    <script>
+        const start = document.getElementById("start");
+        const boo = document.getElementById("boo");
+        const sound = document.getElementById("sound");
+
+        start.addEventListener("click", async () => {
+
+            // Enter fullscreen
+            try {
+                await document.documentElement.requestFullscreen();
+            } catch (e) {
+                console.log("Failed to fullscreen:", e);
+            }
+
+            // Hide fake error page
+            start.style.display = "none";
+
+            // Show jumpscare
+            boo.style.display = "block";
+
+            // Play sound once
+            sound.currentTime = 0;
+
+            try {
+                await sound.play();
+            } catch (e) {
+                console.log("Failed to play audio:", e);
+            }
+        });
+    </script>
+
+</body>
+</html>
