@@ -4,28 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>...</title>
-
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         html, body {
             width: 100%;
             height: 100%;
             background: black;
             overflow: hidden;
         }
-
         #boo {
             width: 100vw;
             height: 100vh;
             object-fit: cover;
             display: none;
         }
-
         #start {
             position: fixed;
             inset: 0;
@@ -41,36 +37,27 @@
         }
     </style>
 </head>
-
 <body>
-
     <div id="start">
          click here to go to<br>
         your destination page
     </div>
-
     <img id="boo" src="boo.png" alt="">
-
     <audio id="sound" src="boo.mp3"></audio>
-
     <script>
         const start = document.getElementById("start");
         const boo = document.getElementById("boo");
         const sound = document.getElementById("sound");
-
         start.addEventListener("click", async () => {
-
             // enter fullscreen
             try {
                 await document.documentElement.requestFullscreen();
             } catch (e) {
                 console.log("failed to fullscreen:", e);
             }
-
             // show image
             start.style.display = "none";
             boo.style.display = "block";
-
             // play audio
             sound.currentTime = 0;
             sound.play().catch(e => {
@@ -78,6 +65,5 @@
             });
         });
     </script>
-
 </body>
 </html>
